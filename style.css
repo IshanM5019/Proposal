@@ -389,6 +389,28 @@ body {
   background: linear-gradient(90deg, transparent, var(--card-border-glow), transparent);
 }
 
+.proposal-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 37px;
+  background: linear-gradient(135deg, 
+    var(--aurora-1) 0%, 
+    var(--aurora-4) 25%, 
+    var(--aurora-5) 50%, 
+    var(--aurora-6) 75%, 
+    var(--aurora-2) 100%);
+  filter: blur(20px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.proposal-card:hover::after {
+  opacity: 0.3;
+}
+
 .proposal-card:hover {
   border-color: var(--card-border-glow);
 }
