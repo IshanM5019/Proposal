@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Will You Be Mine? 💕 | A Special Question For You</title>
+  <meta name="description" content="A special, romantic proposal website created with love. Will you be mine?" />
+  
+  <!-- OpenGraph Social Tags -->
+  <meta property="og:title" content="Will You Be Mine? 💕" />
+  <meta property="og:description" content="I have a special question just for you... Will you give me a chance?" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Playfair Display, Sacramento, Dancing Script, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="rose">
+  <!-- Fullscreen Ambient Particle Canvas & Aurora Background -->
+  <div class="ambient-background">
+    <div class="aurora-mesh"></div>
+    <div class="gradient-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="orb orb-4"></div>
+    </div>
+  </div>
+  <canvas id="bgCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+  <div class="stars-layer" aria-hidden="true"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav" role="navigation" aria-label="Controls">
+    <!-- Music Toggle -->
+    <button id="musicBtn" class="nav-btn" title="Toggle Romantic Melody" aria-label="Toggle Romantic Music">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+      <span class="music-label">Romantic Melody</span>
+      <div class="equalizer" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+
+    <!-- Theme Switcher -->
+    <div class="theme-picker" role="radiogroup" aria-label="Theme selection">
+      <button class="theme-dot active" data-set-theme="rose" title="Blush Rose Theme" aria-label="Blush Rose Theme"></button>
+      <button class="theme-dot" data-set-theme="midnight" title="Midnight Starlight Theme" aria-label="Midnight Starlight Theme"></button>
+      <button class="theme-dot" data-set-theme="sakura" title="Cherry Blossom Theme" aria-label="Cherry Blossom Theme"></button>
+    </div>
+
+    <!-- Personalize Button -->
+    <button id="editBtn" class="nav-btn" title="Personalize Names & Message" aria-label="Personalize Names">
+      <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      <span>Personalize</span>
+    </button>
+  </header>
+
+  <!-- Main Proposal Stage (Stage 1) -->
+  <main id="proposalStage" class="main-stage">
+    <article class="proposal-card" id="cardElement">
+      <!-- Mascot / 3D Heart Art -->
+      <div class="mascot-wrapper" aria-hidden="true">
+        <div class="mascot-halo"></div>
+        <svg class="beating-heart-art" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="heartGradient" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ff7597"/>
+              <stop offset="45%" stop-color="#ff2a6d"/>
+              <stop offset="100%" stop-color="#ba1248"/>
+            </radialGradient>
+            <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- 3D Heart Shape -->
+          <path d="M50,88 C20,68 6,48 6,28 C6,12 18,2 32,2 C41,2 47,8 50,14 C53,8 59,2 68,2 C82,2 94,12 94,28 C94,48 80,68 50,88 Z" fill="url(#heartGradient)"/>
+          <!-- Inner Specular Reflection -->
+          <path d="M22,20 C18,26 18,34 24,42 C28,47 34,44 32,38 C30,32 26,24 22,20 Z" fill="url(#shineGrad)"/>
+        </svg>
+        <span class="sparkle-icon sp-1">✦</span>
+        <span class="sparkle-icon sp-2">✨</span>
+        <span class="sparkle-icon sp-3">★</span>
+      </div>
+
+      <!-- Salutation -->
+      <p class="salutation">Dearest <span id="recipientDisplay">My Love</span>,</p>
+
+      <!-- Main Headline -->
+      <h1 class="proposal-title" id="proposalTitle">
+        Will you be <span class="script-accent">mine?</span> 💕
+      </h1>
+
+      <!-- Touching Message -->
+      <p class="proposal-message" id="proposalMessage">
+        I promise to make you the happiest girl in the world, cherish every laugh, and stay by your side through everything. Will you give me a chance?
+      </p>
+
+      <!-- Interactive Action Buttons -->
+      <div class="actions-arena" id="actionsArena">
+        <!-- YES Button -->
+        <button id="yesBtn" class="btn-yes" aria-label="Yes, I will be yours">
+          <span class="heart-badge">💖</span>
+          <span class="btn-text">YES! ❤️</span>
+        </button>
+
+        <!-- NO Button (Dodging runaway mechanics) -->
+        <div class="btn-no-wrapper" id="noWrapper">
+          <div id="dodgeToast" class="dodge-toast" aria-live="polite">Are you sure? 🥺</div>
+          <button id="noBtn" class="btn-no" aria-label="No">
+            <span>NO 🥺</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Grand Celebration Stage (Stage 2 - Revealed on YES) -->
+  <section id="celebrationStage" class="celebration-stage" aria-live="polite">
+    <div class="celebration-card">
+      <div class="celebration-badge">💍 Forever &amp; Always ✨</div>
+      <h2 class="celebration-title">
+        Yay! She Said YES! <span class="heart-emoji">💖</span>
+      </h2>
+      <p class="celebration-subtitle">
+        You just made me the happiest person in the universe! I love you endlessly, today, tomorrow, and forever.
+      </p>
+
+      <!-- Interactive Celebration Tabs -->
+      <div class="celebration-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="letter" role="tab" aria-selected="true">
+          💌 Love Letter
+        </button>
+        <button class="tab-btn" data-tab="reasons" role="tab" aria-selected="false">
+          ✨ 8 Reasons Why
+        </button>
+        <button class="tab-btn" data-tab="coupons" role="tab" aria-selected="false">
+          🎟️ Love Coupons
+        </button>
+        <button class="tab-btn" data-tab="certificate" role="tab" aria-selected="false">
+          📜 Our Certificate
+        </button>
+      </div>
+
+      <!-- Tab 1: Love Letter -->
+      <div id="tab-letter" class="tab-content active" role="tabpanel">
+        <div class="letter-envelope">
+          <div class="letter-wax-seal" title="Sealed with Love">❤️</div>
+          <h3 class="letter-greeting">My Sweetest <span id="letterRecipient">Love</span>,</h3>
+          <p class="letter-body">
+            "Meeting you was destiny, becoming your friend was a choice, but falling in love with you was completely beyond my control. Every single moment with you feels like home. I promise to always listen, to dance in the rain with you, and to never let you forget how deeply loved you are."
+          </p>
+          <div class="letter-signature">
+            Forever Yours,<br/>
+            <span id="letterSender">Ishan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: 8 Reasons Why I Love You -->
+      <div id="tab-reasons" class="tab-content" role="tabpanel">
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-icon">🌟</div>
+            <div class="reason-text">Your radiant smile that brightens up my darkest days</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🥺</div>
+            <div class="reason-text">The cute way your eyes sparkle when you're laughing</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">☕</div>
+            <div class="reason-text">How calm and peaceful everything feels by your side</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🪄</div>
+            <div class="reason-text">How you make ordinary little moments feel magical</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🌸</div>
+            <div class="reason-text">Your beautiful, gentle heart and pure kindness</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">🫂</div>
+            <div class="reason-text">The warm feeling of your hugs that melts away all stress</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">💫</div>
+            <div class="reason-text">All the dreams and future adventures waiting for us</div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">💖</div>
+            <div class="reason-text">Simply because you are you, the most precious person ever</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Love Coupons -->
+      <div id="tab-coupons" class="tab-content" role="tabpanel">
+        <div class="coupons-grid">
+          <div class="coupon-ticket" onclick="redeemCoupon(this)">
+            <div class="coupon-badge">Sweet Treat</div>
+            <div class="coupon-title">🍦 Late Night Ice Cream</div>
+            <div class="coupon-status">Tap to redeem</div>
+          </div>
+          <div class="coupon-ticket" onclick="redeemCoupon(this)">
+            <div class="coupon-badge">Cozy Hugs</div>
+            <div class="coupon-title">🤗 Unlimited Tight Hugs</div>
+            <div class="coupon-status">Tap to redeem</div>
+          </div>
+          <div class="coupon-ticket" onclick="redeemCoupon(this)">
+            <div class="coupon-badge">Movie Night</div>
+            <div class="coupon-title">🎬 Movie &amp; Snacks of Your Pick</div>
+            <div class="coupon-status">Tap to redeem</div>
+          </div>
+          <div class="coupon-ticket" onclick="redeemCoupon(this)">
+            <div class="coupon-badge">Romantic Date</div>
+            <div class="coupon-title">🍝 Candlelight Dinner Date</div>
+            <div class="coupon-status">Tap to redeem</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Official Certificate -->
+      <div id="tab-certificate" class="tab-content" role="tabpanel">
+        <div class="certificate-frame">
+          <div class="certificate-seal">💌</div>
+          <h3 class="cert-title">Certificate of Eternal Love</h3>
+          <p class="cert-desc">This certifies that from this day onward, two hearts are happily tied together forever.</p>
+          <div class="cert-names" id="certNames">Ishan &amp; My Love</div>
+          <div class="cert-date" id="certDate">Dated: Today &amp; For All Eternity 💕</div>
+          <button type="button" class="btn-secondary" style="margin-top: 1.25rem;" onclick="window.print()">
+            <span>🖨️ Save / Print Certificate</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Celebration Action Buttons -->
+      <div class="celebration-actions">
+        <button id="shareBtn" class="btn-secondary" title="Share this romantic link">
+          <span>🔗 Share Link</span>
+        </button>
+        <button id="confettiAgainBtn" class="btn-secondary" title="Trigger More Confetti">
+          <span>🎉 More Confetti</span>
+        </button>
+        <button id="replayBtn" class="btn-secondary" title="Replay Proposal">
+          <span>🔄 Replay Proposal</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personalization Modal -->
+  <div id="personalizeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle" class="modal-title">Personalize Your Proposal 💕</h3>
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="personalizeForm">
+        <div class="form-group">
+          <label class="form-label" for="inputRecipient">Her Name / Nickname</label>
+          <input type="text" id="inputRecipient" class="form-input" placeholder="e.g. Angel, My Love, Priya" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputSender">Your Name</label>
+          <input type="text" id="inputSender" class="form-input" placeholder="e.g. Ishan" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputMessage">Custom Proposal Message</label>
+          <textarea id="inputMessage" class="form-input" rows="3" placeholder="Write your heartfelt message..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Save &amp; Generate Share Link 💖</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="copiedToast" class="copied-toast">Link copied to clipboard! ✨</div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="confetti.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
